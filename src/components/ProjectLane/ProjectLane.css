@@ -1,0 +1,50 @@
+.project-lane {}
+
+.project-lane-heading {
+    padding: 16px;
+    background-color: white;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.project-lane-heading__label {
+    font-weight: 500;
+}
+
+.project-lane-heading__itemCount {
+    margin-left: 8px;
+    padding: 4px 8px;
+    background-color: gray;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+.project-lane-item {
+    background-color: white;
+    padding: 8px;
+}
+
+
+.project-lane-item__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-lane-item__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.project-lane-item__tag {
+    margin-right: 3px;
+    font-size: 12px;
+    padding: 2px 4px;
+    border: 1px solid rgb(224, 224, 224);
+}
+
+.project-lane-item__priority {
+    font-size: 14px;
+    font-weight: 600;
+}

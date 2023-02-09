@@ -1,0 +1,32 @@
+.currentuser {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 16px;
+}
+
+.currentuser__photo {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(167, 167, 167);
+    border-radius: 50%;
+}
+
+.currentuser__credentials {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    flex-grow: 1;
+    margin-left: 8px;
+}
+
+.currentuser__name {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.currentuser__role {
+    font-size: 14px;
+    color: rgb(171, 171, 171);
+}

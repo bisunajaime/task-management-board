@@ -1,0 +1,32 @@
+.navigation-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+    transition: background-color color 250ms ease;
+    border-radius: 4px;
+}
+
+.navigation-item:hover {
+    background-color: rgb(227, 227, 227);
+    color: black;
+    cursor: pointer;
+}
+
+.navigation-item:hover .navigation-item__label {
+    color: black;
+}
+
+.navigation-item__icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(108, 107, 107);
+    border-radius: 10%;
+}
+
+.navigation-item__label {
+    font-size: 16px;
+    color: rgb(174, 174, 174);
+    transition: color 150ms ease;
+    margin-left: 8px;
+    font-weight: 500;
+}

@@ -1,0 +1,19 @@
+.body {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    background-color: #FFFFFF;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 4fr;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.body__divider {
+    border: 0;
+    height: 1px;
+    grid-column: 1/2;
+    grid-row: 2/2;
+    background-color: #dadada;
+}

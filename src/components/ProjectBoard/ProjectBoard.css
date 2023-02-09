@@ -1,0 +1,8 @@
+.project-board {
+    background-color: #F7F7F7;
+    flex-grow: 1;
+    border-radius: 12px;
+    padding: 16px;
+    display: grid;
+    grid-column-gap: 16px;
+}

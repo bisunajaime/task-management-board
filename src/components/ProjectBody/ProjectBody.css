@@ -1,0 +1,11 @@
+.project-body {
+    margin: 24px 36px;
+    grid-column: 1/2;
+    grid-row: 2/4;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-body__search {
+    margin: 18px 0;
+}

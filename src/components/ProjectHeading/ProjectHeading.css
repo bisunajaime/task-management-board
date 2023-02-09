@@ -1,0 +1,21 @@
+.project-heading {
+    padding: 50px 34px 20px;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.project-heading__title {
+    font-size: 32px;
+}
+
+.project-heading__date {
+    margin-top: 18px;
+}
+
+.project-heading__date-label {
+    color: rgb(175, 175, 175);
+}
+
+.project-heading__date-value {
+    font-weight: 600;
+}
