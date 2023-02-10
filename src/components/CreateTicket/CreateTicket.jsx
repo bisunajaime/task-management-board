@@ -26,6 +26,17 @@ export const CreateTicket = ({
 }
 
 const CreateTicketForm = ({ laneId }) => {
+    const randomBetween = (min, max) => (max - min) * Math.random() + min;
+
+    const randomList = () => {
+        const length = parseInt(randomBetween(1, 5))
+        let list = [];
+        for (let i = 0; i < length; i++) {
+            list.push(Math.random());
+        }
+        return list;
+    };
+
     const [form] = Form.useForm();
     const [{ }, dispatcher] = useStateValue();
     const [state, setState] = useState({
@@ -37,7 +48,7 @@ const CreateTicketForm = ({ laneId }) => {
         title: null,
         description: null,
         priority: 'Low',
-        members: [1],
+        members: randomList(),
         photo: null,
         date: null,
     });
