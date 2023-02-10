@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 //         laneId: null,
 //     },
 // };
+
 const createInitialState = () => {
     const state = {
         selectedTicket: null,
@@ -26,7 +27,7 @@ const createInitialState = () => {
     var ticket1 = {
         id: uuidv4(),
         tags: ['Design', 'Bug'],
-        title: 'Wrong text color',
+        title: '1 Wrong text color',
         description: 'Hello World!',
         priority: 'High',
         members: [1, 2, 3],
@@ -35,7 +36,7 @@ const createInitialState = () => {
     const ticket2 = {
         id: uuidv4(),
         tags: ['Design'],
-        title: 'Wrong text color',
+        title: '2 Wrong text color',
         description: 'Hello World!',
         priority: 'Low',
         members: [1, 2, 3],
@@ -54,7 +55,7 @@ const createInitialState = () => {
     const ticket3 = {
         id: uuidv4(),
         tags: ['Bugs Bunny'],
-        title: 'Wrong text color',
+        title: '3 Wrong text color',
         description: 'Hello World!',
         priority: 'Medium',
         members: [1, 2, 3],
