@@ -1,18 +1,14 @@
+import { useState } from 'react';
+import { Actions } from '../../state/actions';
+import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectLane.css';
 
-export const ProjectLane = () => {
-
-    const items = [{
-        tags: ['Design', 'Bug', 'PDF', 'Hello'],
-        title: 'Design Profile Bug',
-        priority: 'Low',
-        members: 3,
-        photo: null
-    }];
+export const ProjectLane = ({ label, items }) => {
 
     return <div className="project-lane">
-        <ProjectLaneHeading label={"To Do"} itemCount={"3"} />
-        {items.map(i => <ProjectLaneItem item={i} />)}
+        <ProjectLaneHeading label={label} itemCount={items.length} />
+        <AddTicketButton lane={label} />
+        {items.map(i => <ProjectLaneItem item={i} lane={label} />)}
     </div>
 }
 
@@ -23,9 +19,22 @@ const ProjectLaneHeading = ({ label, itemCount }) => {
     </div>
 }
 
-const ProjectLaneItem = ({ item }) => {
-    const { tags, title, priority, members, photo } = item;
-    return <div className="project-lane-item">
+const ProjectLaneItem = ({ item, lane }) => {
+    const { id, tags, title, priority, members, photo } = item;
+    const [{ selectedTicket }, dispatcher] = useStateValue();
+
+    const selectTicket = () => {
+        const sameTicket = selectedTicket?.id == id;
+        dispatcher({
+            type: Actions.SELECT_TICKET,
+            payload: sameTicket ? null : {
+                details: item,
+                lane: lane,
+            },
+        })
+    }
+
+    return <div className="project-lane-item" onClick={() => selectTicket()} >
         <div className="project-lane-item__row">
             <div className="project-lane-item__tags">
                 {tags.map(t => <span className='project-lane-item__tag'>{t}</span>)}
@@ -33,10 +42,30 @@ const ProjectLaneItem = ({ item }) => {
             <span className="project-lane-item__priority" style={{ color: colorFromPriority(priority) }}>{priority}</span>
         </div>
         <h1 className="project-lane-item__title">{title}</h1>
+        <div className="project-lane-item__members">
+            {members.map(m => <div className="project-lane-item__member" />)}
+        </div>
     </div>
 }
 
-const colorFromPriority = priority => {
+const AddTicketButton = ({ lane }) => {
+    const [{ }, dispatcher] = useStateValue();
+
+    const onCreateTicketClick = () => {
+        dispatcher({
+            type: Actions.UNSELECT_TICKET,
+        })
+        dispatcher({
+            type: Actions.SHOW_ADD_TICKET,
+        })
+    }
+
+    return <div className="project-lane-add_ticket" onClick={() => onCreateTicketClick()} >
+        Create Ticket
+    </div>
+}
+
+export const colorFromPriority = priority => {
     switch (priority) {
         case 'Low': return '#33962c';
         case 'Medium': return '#ec822c';

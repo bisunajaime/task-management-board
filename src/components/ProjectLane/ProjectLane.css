@@ -1,4 +1,7 @@
-.project-lane {}
+.project-lane {
+    min-width: 300px;
+    max-width: auto;
+}
 
 .project-lane-heading {
     padding: 16px;
@@ -23,6 +26,19 @@
 .project-lane-item {
     background-color: white;
     padding: 8px;
+    border-radius: 8px;
+    transition: border 150ms ease;
+    border: 2px solid transparent;
+    margin-bottom: 8px;
+    user-select: none;
+}
+
+.project-lane-item:hover {
+    cursor: pointer;
+    border: 2px solid #ff8331;
+    /* box-shadow: -9px 10px 12px -3px rgba(214, 214, 214, 0.75);
+    -webkit-box-shadow: -9px 10px 12px -3px rgba(214, 214, 214, 0.75);
+    -moz-box-shadow: -9px 10px 12px -3px rgba(214, 214, 214, 0.75); */
 }
 
 
@@ -34,7 +50,7 @@
 .project-lane-item__tags {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 6px;
+    margin-bottom: 14px;
 }
 
 .project-lane-item__tag {
@@ -47,4 +63,40 @@
 .project-lane-item__priority {
     font-size: 14px;
     font-weight: 600;
+}
+
+.project-lane-item__title {
+    margin-bottom: 48px;
+}
+
+.project-lane-item__members {
+    display: flex;
+
+}
+
+.project-lane-item__member {
+    height: 30px;
+    width: 30px;
+    margin-right: -8px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid gray;
+    /* box-shadow: 0px 0px 10px 2px rgb(209, 209, 209); */
+}
+
+.project-lane-add_ticket {
+    text-align: center;
+    background-color: white;
+    padding: 14px 0;
+    border: 3px dashed #000000;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: background-color 250ms ease;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.project-lane-add_ticket:hover {
+    background-color: black;
+    color: white;
 }

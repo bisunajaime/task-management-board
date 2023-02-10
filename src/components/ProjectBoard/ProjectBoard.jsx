@@ -1,15 +1,14 @@
+import { useStateValue } from '../../state/AppDataProvider';
 import { ProjectLane } from '../ProjectLane/ProjectLane';
 import './ProjectBoard.css';
 
 export const ProjectBoard = () => {
-    const totalLanes = 4;
+    const [{ projectLanes }, dispatcher] = useStateValue();
+    const totalLanes = projectLanes.length;
 
     return <section className="project-board" style={{
-        gridTemplateColumns: `repeat(${totalLanes}, 1fr)`
+        gridTemplateColumns: `repeat(${totalLanes}, 300px)`
     }}>
-        <ProjectLane />
-        <ProjectLane />
-        <ProjectLane />
-        <ProjectLane />
+        {projectLanes.map(lane => <ProjectLane label={lane.title} items={lane.tickets} />)}
     </section>
 }

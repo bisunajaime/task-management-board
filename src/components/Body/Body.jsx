@@ -1,5 +1,6 @@
 import { ProjectBody } from '../ProjectBody/ProjectBody';
 import { ProjectHeading } from '../ProjectHeading/ProjectHeading';
+import { TicketDetails } from '../TicketDetails/TicketDetails';
 import './Body.css';
 
 export const Body = () => {

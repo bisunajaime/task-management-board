@@ -1,9 +1,9 @@
 .project-body {
     margin: 24px 36px;
-    grid-column: 1/2;
-    grid-row: 2/4;
     display: flex;
     flex-direction: column;
+    height: 80%;
+    flex-grow: 1;
 }
 
 .project-body__search {
