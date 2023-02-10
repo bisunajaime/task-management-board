@@ -1,6 +1,5 @@
 import { Actions } from "./actions"
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from "react";
 
 
 // const [state, setState] = useState({
@@ -17,7 +16,10 @@ const createInitialState = () => {
         selectedTicket: null,
         project: null,
         projectLanes: [],
-        showAddTicket: false,
+        addTicket: {
+            show: false,
+            laneId: null,
+        },
     };
     state.projectLanes.push({
         id: uuidv4(),
@@ -92,24 +94,56 @@ export default (state, action) => {
         case Actions.SELECT_TICKET:
             return {
                 ...state,
-                showAddTicket: false,
+                addTicket: false,
                 selectedTicket: payload == null ? null : {
                     ...payload?.details,
                     lane: payload?.lane,
                 },
             }
         case Actions.ADD_LANE:
-        case Actions.ADD_TICKET:
             return { ...state };
+        case Actions.ADD_TICKET:
+            const { ticket, laneId } = payload;
+            const ids = state.projectLanes.map(e => e.id);
+            const index = ids.indexOf(laneId);
+            if (index == -1) return { ...state };
+            const lane = state.projectLanes[index];
+            const { tickets } = lane;
+            const newTickets = [...tickets, ticket];
+            const stateCopy = { ...state };
+            stateCopy.projectLanes[index].tickets = newTickets
+            return {
+                ...state,
+                ...stateCopy,
+            }
+
         case Actions.SHOW_ADD_TICKET:
-            return { ...state, showAddTicket: true };
+            return {
+                ...state, addTicket: {
+                    show: true,
+                    laneId: payload,
+                }
+            };
         case Actions.HIDE_ADD_TICKET:
-            return { ...state, showAddTicket: false };
+            return {
+                ...state, addTicket: {
+                    show: false,
+                    laneId: null,
+                }
+            };
         case Actions.UNSELECT_TICKET:
             return {
                 ...state,
                 selectedTicket: null,
             }
         case Actions.MOVE_TICKET:
+        case Actions.HIDE_ADD_TICKET:
+            return {
+                ...state,
+                addTicket: {
+                    show: false,
+                    laneId: null,
+                }
+            }
     }
 }

@@ -6,14 +6,14 @@ import { useStateValue } from './state/AppDataProvider';
 import { CreateTicket } from './components/CreateTicket/CreateTicket';
 
 function App() {
-  const [{ selectedTicket, showAddTicket }] = useStateValue();
+  const [{ selectedTicket, addTicket }] = useStateValue();
   const hasSelectedTicket = selectedTicket != null;
   return (
     <main className='app'>
-      <Navigation />
+      {/* <Navigation /> */}
       <Body />
       {hasSelectedTicket ? <TicketDetails details={selectedTicket} /> : <div></div>}
-      {showAddTicket ? <CreateTicket /> : <div></div>}
+      {addTicket.show ? <CreateTicket laneId={addTicket.laneId} /> : <div></div>}
     </main>
   );
 }

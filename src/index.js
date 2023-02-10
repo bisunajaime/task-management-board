@@ -6,11 +6,9 @@ import reducer, { initialState } from './state/reducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <AppDataProvider initialState={initialState} reducer={reducer} >
-      <App />
-    </AppDataProvider>
-  </React.StrictMode>
+  <AppDataProvider initialState={initialState} reducer={reducer} >
+    <App />
+  </AppDataProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
