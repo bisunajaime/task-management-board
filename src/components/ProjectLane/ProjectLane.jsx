@@ -1,18 +1,20 @@
 import { useState } from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import { Actions } from '../../state/actions';
 import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectLane.css';
 
-export const ProjectLane = ({ id, label, items }) => {
+export const ProjectLane = ({ id, label, items, innerRef }) => {
     const [{ tickets }] = useStateValue();
 
-    return <div className="project-lane">
+    return <div className="project-lane" ref={innerRef}>
         <ProjectLaneHeading label={label} itemCount={items.length} />
         <AddTicketButton lane={id} />
         {items.map(i => <ProjectLaneItem
             key={i}
             item={tickets[i]}
             lane={label}
+            index={items.indexOf(i)}
         />)}
     </div>
 }
@@ -24,9 +26,9 @@ const ProjectLaneHeading = ({ label, itemCount }) => {
     </div>
 }
 
-const ProjectLaneItem = ({ item, lane }) => {
+const ProjectLaneItem = ({ item, lane, index }) => {
     const { id, tags, title, priority, members, photo } = item;
-    const [{ selectedTicket }, dispatcher] = useStateValue();
+    const [{ selectedTicket, projectLanes }, dispatcher] = useStateValue();
 
     const selectTicket = () => {
         const sameTicket = selectedTicket?.id == id;
@@ -39,18 +41,20 @@ const ProjectLaneItem = ({ item, lane }) => {
         })
     }
 
-    return <div className="project-lane-item" onClick={() => selectTicket()} >
-        <div className="project-lane-item__row">
-            <div className="project-lane-item__tags">
-                {tags.map(t => <span key={t} className='project-lane-item__tag'>{t}</span>)}
+    return <Draggable key={id} draggableId={id} index={index} >
+        {(provided, snapshot) => (<div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} className="project-lane-item" onClick={() => selectTicket()} >
+            <div className="project-lane-item__row">
+                <div className="project-lane-item__tags">
+                    {tags.map(t => <span key={t} className='project-lane-item__tag'>{t}</span>)}
+                </div>
+                <span className="project-lane-item__priority" style={{ color: colorFromPriority(priority) }}>{priority}</span>
             </div>
-            <span className="project-lane-item__priority" style={{ color: colorFromPriority(priority) }}>{priority}</span>
-        </div>
-        <h1 className="project-lane-item__title">{title}</h1>
-        <div className="project-lane-item__members">
-            {members.map(m => <div key={m} className="project-lane-item__member" />)}
-        </div>
-    </div>
+            <h1 className="project-lane-item__title">{title}</h1>
+            <div className="project-lane-item__members">
+                {members.map(m => <div key={m} className="project-lane-item__member" />)}
+            </div>
+        </div>)}
+    </Draggable>
 }
 
 const AddTicketButton = ({ lane }) => {
