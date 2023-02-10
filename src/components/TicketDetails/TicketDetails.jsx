@@ -12,7 +12,7 @@ export const TicketDetails = ({ details }) => {
             <div className="ticket-details__code">{id}</div>
             <div className="ticket-details__title">{title}</div>
             <div className="ticket-details__tags">
-                {tags?.map(t => <div className="ticket-details__tags-tag">{t}</div>)}
+                {tags?.map(t => <div key={t} className="ticket-details__tags-tag">{t}</div>)}
                 <div className="ticket-details__tags-tag--add">Add a tag</div>
             </div>
             <div className="ticket-details__description">

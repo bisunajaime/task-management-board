@@ -2,85 +2,75 @@ import { Actions } from "./actions"
 import { v4 as uuidv4 } from 'uuid';
 
 
-// const [state, setState] = useState({
-//     id: uuidv4(),
-//     tags: [],
-//     title: null,
-//     description: null,
-//     priority: null,
-//     members: [],
-//     photo: null
-// })
+// const initialState = {
+//     selectedTicket: null,
+//     project: null,
+//     projectLanes: [],
+//     tickets: {}, // {'id': {...values}}
+//     addTicket: {
+//         show: false,
+//         laneId: null,
+//     },
+// };
 const createInitialState = () => {
     const state = {
         selectedTicket: null,
         project: null,
         projectLanes: [],
+        tickets: {}, // {'id': {...values}}
         addTicket: {
             show: false,
             laneId: null,
         },
     };
+    var ticket1 = {
+        id: uuidv4(),
+        tags: ['Design', 'Bug'],
+        title: 'Wrong text color',
+        description: 'Hello World!',
+        priority: 'High',
+        members: [1, 2, 3],
+        photo: null
+    };
+    const ticket2 = {
+        id: uuidv4(),
+        tags: ['Design'],
+        title: 'Wrong text color',
+        description: 'Hello World!',
+        priority: 'Low',
+        members: [1, 2, 3],
+        photo: null
+    }
     state.projectLanes.push({
         id: uuidv4(),
         title: 'To Do',
-        tickets: [{
-            id: uuidv4(),
-            tags: ['Design', 'Bug'],
-            title: 'Wrong text color',
-            description: 'Hello World!',
-            priority: 'High',
-            members: [1, 2, 3],
-            photo: null
-        }],
+        ticketIds: [
+            ticket1.id,
+            ticket2.id,
+        ],
     })
+
+
+    const ticket3 = {
+        id: uuidv4(),
+        tags: ['Bugs Bunny'],
+        title: 'Wrong text color',
+        description: 'Hello World!',
+        priority: 'Medium',
+        members: [1, 2, 3],
+        photo: null
+    }
     state.projectLanes.push({
         id: uuidv4(),
         title: 'In Progress',
-        tickets: [{
-            id: uuidv4(),
-            tags: ['Design', 'Bug'],
-            title: 'Wrong text color',
-            description: 'Hello World!',
-            priority: 'Medium',
-            members: [1, 2, 3],
-            photo: null
-        }, {
-            id: uuidv4(),
-            tags: ['Design'],
-            title: '🍻 Pepsie Regular',
-            description: 'Hello World!',
-            priority: 'High',
-            members: [1, 2, 3],
-            photo: null
-        }],
+        ticketIds: [
+            ticket3.id,
+        ],
     })
-    state.projectLanes.push({
-        id: uuidv4(),
-        title: 'Review',
-        tickets: [{
-            id: uuidv4(),
-            tags: ['Design', 'Bug'],
-            title: 'Wrong text color',
-            description: 'Hello World!',
-            priority: 'High',
-            members: [1, 2, 3],
-            photo: null
-        }],
-    })
-    state.projectLanes.push({
-        id: uuidv4(),
-        title: 'Ready For Production',
-        tickets: [{
-            id: uuidv4(),
-            tags: ['Design', 'Bug'],
-            title: 'Font Size Issue',
-            description: 'Hello World!',
-            priority: 'Low',
-            members: [1, 2, 3, 4,],
-            photo: null
-        }],
-    })
+
+    state.tickets[ticket1.id] = ticket1;
+    state.tickets[ticket2.id] = ticket2;
+    state.tickets[ticket3.id] = ticket3;
 
     return state;
 }
@@ -103,18 +93,28 @@ export default (state, action) => {
         case Actions.ADD_LANE:
             return { ...state };
         case Actions.ADD_TICKET:
+            // const { ticket, laneId } = payload;
+            // const ids = state.projectLanes.map(e => e.id);
+            // const index = ids.indexOf(laneId);
+            // if (index == -1) return { ...state };
+            // const lane = state.projectLanes[index];
+            // const { tickets } = lane;
+            // const newTickets = [...tickets, ticket];
+            // const stateCopy = { ...state };
+            // stateCopy.projectLanes[index].tickets = newTickets
             const { ticket, laneId } = payload;
             const ids = state.projectLanes.map(e => e.id);
             const index = ids.indexOf(laneId);
-            if (index == -1) return { ...state };
+            if (index == -1) return state;
             const lane = state.projectLanes[index];
-            const { tickets } = lane;
-            const newTickets = [...tickets, ticket];
-            const stateCopy = { ...state };
-            stateCopy.projectLanes[index].tickets = newTickets
+            const ticketIds = [...lane.ticketIds, ticket.id];
+            const stateCopy = { ...state }
+            stateCopy.projectLanes[index].ticketIds = ticketIds;
+            stateCopy.tickets[ticket.id] = ticket;
+
             return {
                 ...state,
-                ...stateCopy,
+                ...stateCopy
             }
 
         case Actions.SHOW_ADD_TICKET:

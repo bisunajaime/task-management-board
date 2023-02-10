@@ -9,6 +9,11 @@ export const ProjectBoard = () => {
     return <section className="project-board" style={{
         gridTemplateColumns: `repeat(${totalLanes}, 300px)`
     }}>
-        {projectLanes.map(lane => <ProjectLane key={lane.id} id={lane.id} label={lane.title} items={lane.tickets} />)}
+        {projectLanes.map(lane => <ProjectLane
+            key={lane.id}
+            id={lane.id}
+            label={lane.title}
+            items={lane.ticketIds}
+        />)}
     </section>
 }

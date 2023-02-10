@@ -4,11 +4,16 @@ import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectLane.css';
 
 export const ProjectLane = ({ id, label, items }) => {
+    const [{ tickets }] = useStateValue();
 
     return <div className="project-lane">
         <ProjectLaneHeading label={label} itemCount={items.length} />
         <AddTicketButton lane={id} />
-        {items.map(i => <ProjectLaneItem key={i.id} item={i} lane={label} />)}
+        {items.map(i => <ProjectLaneItem
+            key={i}
+            item={tickets[i]}
+            lane={label}
+        />)}
     </div>
 }
 
