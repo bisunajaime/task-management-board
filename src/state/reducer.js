@@ -92,6 +92,7 @@ export default (state, action) => {
         case Actions.SELECT_TICKET:
             return {
                 ...state,
+                showAddTicket: false,
                 selectedTicket: payload == null ? null : {
                     ...payload?.details,
                     lane: payload?.lane,
