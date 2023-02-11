@@ -33,6 +33,7 @@ const AddProjectLaneHeading = ({ label }) => {
 
     const onAddClick = () => {
         const title = prompt('Enter a lane name:')
+        if (title == null) return;
         dispatcher({
             type: Actions.ADD_LANE,
             payload: title,
