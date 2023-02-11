@@ -92,7 +92,18 @@ export default (state, action) => {
                 },
             }
         case Actions.ADD_LANE:
-            return { ...state };
+            const newLane = {
+                id: uuidv4(),
+                title: payload,
+                ticketIds: [],
+            };
+
+            return {
+                ...state, projectLanes: [
+                    ...state.projectLanes,
+                    newLane,
+                ]
+            };
         case Actions.ADD_TICKET: {
             const { ticket, laneId } = payload;
             const ids = state.projectLanes.map(e => e.id);

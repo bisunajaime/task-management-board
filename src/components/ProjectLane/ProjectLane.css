@@ -10,7 +10,8 @@
     margin-bottom: 8px;
 }
 
-.project-lane-heading__label {
+.project-lane-heading__label,
+.project-lane-heading__label--add {
     font-weight: 500;
 }
 
@@ -84,7 +85,8 @@
     /* box-shadow: 0px 0px 10px 2px rgb(209, 209, 209); */
 }
 
-.project-lane-add_ticket {
+.project-lane-add_ticket,
+.project-lane-heading--add {
     text-align: center;
     background-color: white;
     padding: 14px 0;
@@ -96,7 +98,8 @@
     border-radius: 4px;
 }
 
-.project-lane-add_ticket:hover {
+.project-lane-add_ticket:hover,
+.project-lane-heading--add:hover {
     background-color: black;
     color: white;
 }
