@@ -93,16 +93,7 @@ export default (state, action) => {
             }
         case Actions.ADD_LANE:
             return { ...state };
-        case Actions.ADD_TICKET:
-            // const { ticket, laneId } = payload;
-            // const ids = state.projectLanes.map(e => e.id);
-            // const index = ids.indexOf(laneId);
-            // if (index == -1) return { ...state };
-            // const lane = state.projectLanes[index];
-            // const { tickets } = lane;
-            // const newTickets = [...tickets, ticket];
-            // const stateCopy = { ...state };
-            // stateCopy.projectLanes[index].tickets = newTickets
+        case Actions.ADD_TICKET: {
             const { ticket, laneId } = payload;
             const ids = state.projectLanes.map(e => e.id);
             const index = ids.indexOf(laneId);
@@ -115,8 +106,9 @@ export default (state, action) => {
 
             return {
                 ...state,
-                ...stateCopy
+                ...stateCopy,
             }
+        }
 
         case Actions.SHOW_ADD_TICKET:
             return {
@@ -138,6 +130,25 @@ export default (state, action) => {
                 selectedTicket: null,
             }
         case Actions.MOVE_TICKET:
+            {
+                const { prevLane, newLane, ticketId } = payload;
+                if (prevLane == newLane) return state;
+                const copy = [...state.projectLanes]
+                const ids = state.projectLanes.map(e => e.id);
+                const index = ids.indexOf(prevLane);
+                var tickets = copy[index].ticketIds;
+                tickets = tickets.filter(t => t != ticketId)
+                copy[index].ticketIds = tickets;
+                const nIndex = ids.indexOf(newLane);
+                var nTickets = copy[nIndex].ticketIds;
+                nTickets.push(ticketId);
+                return {
+                    ...state, selectedTicket: {
+                        ...state.selectedTicket,
+                        lane: newLane,
+                    }
+                }
+            }
         case Actions.HIDE_ADD_TICKET:
             return {
                 ...state,

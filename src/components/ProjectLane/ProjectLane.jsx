@@ -12,7 +12,7 @@ export const ProjectLane = ({ id, label, items }) => {
         {items.map(i => <ProjectLaneItem
             key={i}
             item={tickets[i]}
-            lane={label}
+            lane={id}
         />)}
     </div>
 }
