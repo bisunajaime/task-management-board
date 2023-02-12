@@ -1,9 +1,10 @@
 .project-body {
-    margin: 24px 36px;
+    padding: 24px 36px;
     display: flex;
     flex-direction: column;
     height: 80%;
     flex-grow: 1;
+    background-color: #181B29;
 }
 
 .project-body__search {

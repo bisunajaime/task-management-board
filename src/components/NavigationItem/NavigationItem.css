@@ -7,19 +7,15 @@
 }
 
 .navigation-item:hover {
-    background-color: rgb(227, 227, 227);
-    color: black;
+    background-color: #484B69;
+    color: rgb(233, 233, 233);
     cursor: pointer;
-}
-
-.navigation-item:hover .navigation-item__label {
-    color: black;
 }
 
 .navigation-item__icon {
     width: 40px;
     height: 40px;
-    background-color: rgb(72, 130, 255);
+    background-color: #484B69;
     border-radius: 10%;
     color: white;
     display: flex;
@@ -29,7 +25,7 @@
 
 .navigation-item__label {
     font-size: 16px;
-    color: rgb(0, 0, 0);
+    color: #ebecff;
     transition: color 150ms ease;
     margin-left: 8px;
     font-weight: 500;

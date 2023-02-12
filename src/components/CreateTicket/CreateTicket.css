@@ -1,10 +1,11 @@
 .create-ticket {
     width: 800px;
-    background-color: rgb(244, 244, 244);
+    background-color: #282A40;
 }
 
 .create-ticket__title {
     margin-bottom: 24px;
+    color: rgb(221, 221, 221);
 }
 
 .dynamic-delete-button {
@@ -15,6 +16,11 @@
     font-size: 24px;
     cursor: pointer;
     transition: all 0.3s;
+}
+
+.create-ticket>label {
+    color: rgb(221, 221, 221);
+
 }
 
 .dynamic-delete-button:hover {

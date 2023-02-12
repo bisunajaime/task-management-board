@@ -8,7 +8,7 @@
 .currentuser__photo {
     width: 40px;
     height: 40px;
-    background-color: rgb(72, 130, 255);
+    background-color: #B5B8E7;
     border-radius: 50%;
 }
 
@@ -24,6 +24,7 @@
 .currentuser__name {
     font-weight: 600;
     font-size: 18px;
+    color: white;
 }
 
 .currentuser__role {

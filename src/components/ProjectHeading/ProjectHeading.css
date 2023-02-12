@@ -2,14 +2,18 @@
     padding: 50px 34px 20px;
     grid-column: 1/2;
     grid-row: 1/2;
+    background-color: #292A42;
 }
 
 .project-heading__title {
     font-size: 32px;
+    color: white;
+    font-weight: 900;
 }
 
 .project-heading__date {
     margin-top: 18px;
+    color: #B5B8E7;
 }
 
 .project-heading__date-label {

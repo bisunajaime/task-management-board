@@ -1,5 +1,5 @@
 .project-board {
-    background-color: #e0e0e0;
+    background-color: #484B69;
     border-radius: 12px;
     padding: 16px;
     display: grid;
@@ -8,6 +8,6 @@
     grid-column-gap: 16px;
     max-width: 100%;
     overflow-x: scroll;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-grow: 1;
 }

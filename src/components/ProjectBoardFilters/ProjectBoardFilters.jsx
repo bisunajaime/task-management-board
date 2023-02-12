@@ -30,6 +30,10 @@ const ProjectBoardSearch = () => {
             size="large"
             onChange={onSearch}
             placeholder="Find a ticket or description"
+            style={{
+                backgroundColor: '#484B69',
+
+            }}
             prefix={<SearchOutlined style={{ marginRight: '8px' }} />}
         />
     </div>

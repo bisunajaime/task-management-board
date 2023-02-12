@@ -5,7 +5,7 @@
 
 .project-lane-heading {
     padding: 16px;
-    background-color: white;
+    background-color: #181B29;
     border-radius: 4px;
     margin-bottom: 8px;
 }
@@ -13,23 +13,24 @@
 .project-lane-heading__label,
 .project-lane-heading__label--add {
     font-weight: 500;
+    color: #ffffff;
 }
 
 .project-lane-heading__itemCount {
     margin-left: 8px;
     padding: 4px 8px;
-    background-color: gray;
+    background-color: #505E9F;
     border-radius: 4px;
     color: white;
     font-weight: bold;
 }
 
 .project-lane-item--selected {
-    border: 2px solid rgb(72, 130, 255) !important;
+    border: 2px solid #728BFF !important;
 }
 
 .project-lane-item {
-    background-color: white;
+    background-color: #181B29;
     padding: 8px;
     border-radius: 8px;
     transition: border 150ms ease;
@@ -62,7 +63,8 @@
     margin-right: 3px;
     font-size: 12px;
     padding: 2px 4px;
-    border: 1px solid rgb(224, 224, 224);
+    border: 1px solid #c8c8c8;
+    color: #c8c8c8;
 }
 
 .project-lane-item__priority {
@@ -71,6 +73,7 @@
 }
 
 .project-lane-item__title {
+    color: rgb(221, 221, 221);
     margin-bottom: 12px;
 }
 
@@ -81,6 +84,7 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: rgba(221, 221, 221, 0.653);
     text-overflow: ellipsis;
 }
 
@@ -93,7 +97,7 @@
     height: 30px;
     width: 30px;
     margin-right: -8px;
-    background-color: white;
+    background-color: #484B69;
     border-radius: 50%;
     border: 1px solid gray;
     /* box-shadow: 0px 0px 10px 2px rgb(209, 209, 209); */
@@ -102,18 +106,19 @@
 .project-lane-add_ticket,
 .project-lane-heading--add {
     text-align: center;
-    background-color: white;
+    background-color: #505E9F;
     padding: 14px 0;
-    border: 3px dashed #000000;
+    border: 3px dashed #B5B8E7;
     cursor: pointer;
     margin-bottom: 8px;
     transition: background-color 250ms ease;
     font-weight: bold;
     border-radius: 4px;
+    color: white;
 }
 
 .project-lane-add_ticket:hover,
 .project-lane-heading--add:hover {
-    background-color: black;
-    color: white;
+    background-color: #B5B8E7;
+    color: #181B29;
 }
