@@ -7,6 +7,7 @@
 * Authentication
 * Creating multiple boards
 * Drag and Drop tickets to other lanes
+* Updating members and assignees of a ticket
 * and many more... 
 
 
