@@ -220,7 +220,7 @@ export default (state, action) => {
                     }
                 }
             }
-        case Actions.UPDATE_TICKET_PRIORITY:
+        case Actions.UPDATE_TICKET_PRIORITY: {
             const { ticketId, priority } = payload;
             const ticket = state.tickets[ticketId];
             if (ticket == null) return state;
@@ -232,7 +232,8 @@ export default (state, action) => {
                     ticketId: ticket,
                 }
             };
-        case Actions.SEARCH_TICKETS:
+        }
+        case Actions.SEARCH_TICKETS: {
             const { text } = payload;
             const results = {};
             if (text.length == 0) {
@@ -248,6 +249,25 @@ export default (state, action) => {
             }
             // console.log(`Found: ${Object.keys(results).length} results`);
             return { ...state, searchResults: results };
+        }
+        case Actions.FILTER_PRIORITY:
+            const { priority } = payload;
+            const results = {};
+            const source = state.tickets;
+            if (priority == 'All') {
+                return { ...state, searchResults: state.tickets }
+            }
+            for (const key in source) {
+                const ticket = state.tickets[key];
+                const match = ticket.priority === priority;
+                if (match) {
+                    results[key] = state.tickets[key]
+                }
+            }
+            return {
+                ...state,
+                searchResults: results
+            };
         case Actions.HIDE_EDIT_TICKET:
         case Actions.EDIT_TICKET:
             return state;
