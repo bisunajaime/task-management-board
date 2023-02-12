@@ -149,9 +149,9 @@ const CreateTicketForm = ({ laneId, image }) => {
                     <Radio.Button value="High">High</Radio.Button>
                 </Radio.Group>
             </Form.Item>
-            <Form.Item label="Date" name='date'>
+            {/* <Form.Item label="Date" name='date'>
                 <DatePicker size='large' />
-            </Form.Item>
+            </Form.Item> */}
             {/* TODO: Tags */}
             {/* <Form.Item label="Tags" >
                 <Form.List name="users" initialValue={state.tags}>
