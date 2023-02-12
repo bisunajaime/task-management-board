@@ -1,5 +1,5 @@
 import './CreateTicket.css';
-import { Button, DatePicker, Form, Input, Radio, Space } from 'antd';
+import { Button, DatePicker, Form, Input, Radio, Space, Tooltip } from 'antd';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TextArea from 'antd/es/input/TextArea';
@@ -37,7 +37,9 @@ export const CreateTicket = () => {
     return <section className="create-ticket">
         <div className="create-ticket__image-picker">
             <img src={photo} alt="" className={`create-ticket__image ${photo == null ? 'create-ticket__image--placeholder' : ''}`} />
-            <button onClick={loadRandomImage} className='create-ticket__random-image-button' >Random Image</button>
+            <Tooltip title='Powered by UnSplash'>
+                <button onClick={loadRandomImage} className='create-ticket__random-image-button' >Random Image</button>
+            </Tooltip>
         </div>
         <div className="create-ticket__form">
             <h1 className='create-ticket__title'>Create Ticket - {getLaneName()}</h1>

@@ -1,4 +1,4 @@
-import { Form, Select } from 'antd';
+import { Form, Select, Tooltip } from 'antd';
 import { Actions } from '../../state/actions';
 import { useStateValue } from '../../state/AppDataProvider';
 import { colorFromPriority } from '../ProjectLane/ProjectLane';
@@ -39,8 +39,12 @@ export const TicketDetails = () => {
                     backgroundColor: colorFromPriority(priority)
                 }}>{priority} - {getLaneTitle()}</div>
                 <div className="ticket-details__heading-button-group">
-                    <EditOutlined onClick={showEditTicket} className='ticket-details__button-edit' />
-                    <CloseOutlined onClick={closeTicket} className='ticket-details__button-close' />
+                    <Tooltip title="Edit ticket">
+                        <EditOutlined onClick={showEditTicket} className='ticket-details__button-edit' />
+                    </Tooltip>
+                    <Tooltip title="Close ticket">
+                        <CloseOutlined onClick={closeTicket} className='ticket-details__button-close' />
+                    </Tooltip>
                 </div>
             </div>
             <div className="ticket-details__code">{id}</div>
