@@ -10,7 +10,7 @@ function App() {
   const hasSelectedTicket = selectedTicket != null;
   return (
     <main className='app'>
-      {/* <Navigation /> */}
+      <Navigation />
       <Body />
       {hasSelectedTicket ? <TicketDetails /> : <div></div>}
       {saveTicket.show ? <CreateTicket /> : <div></div>}

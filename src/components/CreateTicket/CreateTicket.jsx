@@ -119,12 +119,27 @@ const CreateTicketForm = ({ laneId, image }) => {
             initialValues={state}
             onValuesChange={onValuesChanged}
             onFinish={onSubmit}
-            onFinishFailed={(err) => alert(`There was a problem ${err}`)}
+        // onFinishFailed={(err) => alert(`There was a problem ${err}`)}
         >
-            <Form.Item label="Title" required name="title" >
+            <Form.Item
+                label="Title"
+                required
+                name="title"
+                rules={[{
+                    required: true,
+                    message: 'Please enter a title.'
+                }]} >
                 <Input size='large' />
             </Form.Item>
-            <Form.Item label="Description" required name="description">
+            <Form.Item
+                label="Description"
+                required
+                name="description"
+                rules={[{
+                    required: true,
+                    message: 'Please enter a description.'
+                }]}
+            >
                 <TextArea rows={4} draggable={false} />
             </Form.Item>
             <Form.Item label="Priority" name="priority">
