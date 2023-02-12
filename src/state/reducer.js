@@ -219,6 +219,18 @@ export default (state, action) => {
                     }
                 }
             }
+        case Actions.UPDATE_TICKET_PRIORITY:
+            const { ticketId, priority } = payload;
+            const ticket = state.tickets[ticketId];
+            if (ticket == null) return state;
+            ticket.priority = priority
+            return {
+                ...state,
+                tickets: {
+                    ...state.tickets,
+                    ticketId: ticket,
+                }
+            };
         case Actions.HIDE_EDIT_TICKET:
         case Actions.EDIT_TICKET:
             return state;

@@ -4,6 +4,7 @@ import { useStateValue } from '../../state/AppDataProvider';
 import { colorFromPriority } from '../ProjectLane/ProjectLane';
 import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import './TicketDetails.css';
+import { useEffect } from 'react';
 
 export const TicketDetails = () => {
     const [{ projectLanes, selectedTicket }, dispatcher] = useStateValue();
@@ -56,6 +57,7 @@ export const TicketDetails = () => {
                 {description}
             </div>
             <MoveTicketLane key={id} details={selectedTicket} />
+            <UpdateTicketPriority details={selectedTicket} />
             <div className="ticket-details__comments"></div>
         </div>
     </section >
@@ -66,9 +68,6 @@ const MoveTicketLane = ({ details }) => {
     const [form] = Form.useForm();
 
     const onValuesChange = val => {
-        console.log(val)
-        console.log(details.lane)
-        console.log(projectLanes)
         dispatcher({
             type: Actions.MOVE_TICKET,
             payload: {
@@ -80,9 +79,6 @@ const MoveTicketLane = ({ details }) => {
     }
 
     return <div className="move-ticket-lane">
-        {/* <h1 className="move-ticket-lane__title">
-            Move Lane
-        </h1> */}
         <Form
             form={form}
             wrapperCol={{ span: 14 }}
@@ -97,6 +93,45 @@ const MoveTicketLane = ({ details }) => {
             <Form.Item label="Status" name={'lane'} >
                 <Select size='large'>
                     {projectLanes.map(lane => <Select.Option key={lane.id} value={lane.id}>{lane.title}</Select.Option>)}
+                </Select>
+            </Form.Item>
+        </Form>
+    </div>
+}
+
+const UpdateTicketPriority = ({ details }) => {
+    const [{ }, dispatcher] = useStateValue();
+    const [form] = Form.useForm();
+    const priorities = ['Low', 'Medium', 'High'];
+
+    useEffect(() => {
+        form.resetFields()
+    }, [details.priority]);
+
+    const onValuesChange = val => {
+        dispatcher({
+            type: Actions.UPDATE_TICKET_PRIORITY,
+            payload: {
+                ticketId: details.id,
+                priority: val.priority
+            },
+        })
+    }
+
+    return <div className="move-ticket-lane">
+        <Form
+            form={form}
+            wrapperCol={{ span: 14 }}
+            initialValues={{
+                priority: details.priority
+            }}
+            layout="horizontal"
+            onValuesChange={onValuesChange}
+            style={{ maxWidth: 600 }}
+        >
+            <Form.Item label="Priority" name={'priority'} >
+                <Select size='large'>
+                    {priorities.map(p => <Select.Option key={p} value={p}>{p}</Select.Option>)}
                 </Select>
             </Form.Item>
         </Form>
