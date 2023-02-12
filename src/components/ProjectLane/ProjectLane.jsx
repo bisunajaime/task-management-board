@@ -25,18 +25,6 @@ export const ProjectLane = ({ id, label, items }) => {
                 lane={id}
             />
         })}
-        {/* {hasSearchResults ?
-            items.map(i => searchResults[i] == undefined ? <></> : <ProjectLaneItem
-                key={i}
-                item={searchResults[i]}
-                lane={id}
-            />)
-            : items.map(i => <ProjectLaneItem
-                key={i}
-                item={tickets[i]}
-                lane={id}
-            />)
-        } */}
     </div>
 }
 
