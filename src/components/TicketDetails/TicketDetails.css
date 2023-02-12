@@ -92,9 +92,14 @@
     display: flex;
 }
 
+.ticket-details__button-close {
+    background-color: #FF3232 !important;
+    font-weight: bold;
+}
+
 .ticket-details__button-edit,
 .ticket-details__button-close {
-    padding: 14px;
+    padding: 12px;
     border-radius: 50%;
     background-color: black;
     color: white;

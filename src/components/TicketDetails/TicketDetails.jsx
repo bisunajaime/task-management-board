@@ -5,9 +5,9 @@ import { colorFromPriority } from '../ProjectLane/ProjectLane';
 import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import './TicketDetails.css';
 
-export const TicketDetails = ({ details }) => {
-    const [{ projectLanes }, dispatcher] = useStateValue();
-    const { id, lane, tags, title, priority, description, members, photo } = details;
+export const TicketDetails = () => {
+    const [{ projectLanes, selectedTicket }, dispatcher] = useStateValue();
+    const { id, lane, tags, title, priority, description, members, photo } = selectedTicket;
 
     const getLaneTitle = () => {
         const laneDetails = projectLanes.find(l => l.id == lane)
@@ -19,7 +19,7 @@ export const TicketDetails = ({ details }) => {
         dispatcher({
             type: Actions.SHOW_SAVE_TICKET,
             payload: {
-                ticket: details,
+                ticket: selectedTicket,
                 laneId: lane,
             }
         })
@@ -40,7 +40,7 @@ export const TicketDetails = ({ details }) => {
                 }}>{priority} - {getLaneTitle()}</div>
                 <div className="ticket-details__heading-button-group">
                     <EditOutlined onClick={showEditTicket} className='ticket-details__button-edit' />
-                    <CloseOutlined onClick={closeTicket} className='ticket-details__button-edit' />
+                    <CloseOutlined onClick={closeTicket} className='ticket-details__button-close' />
                 </div>
             </div>
             <div className="ticket-details__code">{id}</div>
@@ -51,7 +51,7 @@ export const TicketDetails = ({ details }) => {
             <div className="ticket-details__description">
                 {description}
             </div>
-            <MoveTicketLane key={id} details={details} />
+            <MoveTicketLane key={id} details={selectedTicket} />
             <div className="ticket-details__comments"></div>
         </div>
     </section >
@@ -90,7 +90,7 @@ const MoveTicketLane = ({ details }) => {
             style={{ maxWidth: 600 }}
         >
 
-            <Form.Item label="Select" name={'lane'} >
+            <Form.Item label="Status" name={'lane'} >
                 <Select size='large'>
                     {projectLanes.map(lane => <Select.Option key={lane.id} value={lane.id}>{lane.title}</Select.Option>)}
                 </Select>

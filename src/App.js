@@ -12,7 +12,7 @@ function App() {
     <main className='app'>
       {/* <Navigation /> */}
       <Body />
-      {hasSelectedTicket ? <TicketDetails details={selectedTicket ?? {}} /> : <div></div>}
+      {hasSelectedTicket ? <TicketDetails /> : <div></div>}
       {saveTicket.show ? <CreateTicket /> : <div></div>}
     </main>
   );

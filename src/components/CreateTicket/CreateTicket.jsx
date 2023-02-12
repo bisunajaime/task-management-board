@@ -102,9 +102,6 @@ const CreateTicketForm = ({ laneId, image }) => {
                 laneId: laneId,
             },
         })
-        dispatcher({
-            type: Actions.HIDE_SAVE_TICKET,
-        })
     }
 
     const onCancel = () => {

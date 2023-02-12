@@ -139,6 +139,11 @@ export default (state, action) => {
                     ...state,
                     ...stateCopy,
                     selectedTicket: ticket,
+                    saveTicket: {
+                        show: false,
+                        laneId: null,
+                        ticket: null,
+                    }
                 }
             }
             const ticketIds = [...lane.ticketIds, ticket.id];
@@ -147,6 +152,11 @@ export default (state, action) => {
             return {
                 ...state,
                 ...stateCopy,
+                saveTicket: {
+                    show: false,
+                    laneId: null,
+                    ticket: null,
+                }
             }
         }
 
@@ -200,7 +210,6 @@ export default (state, action) => {
             }
         case Actions.HIDE_EDIT_TICKET:
         case Actions.EDIT_TICKET:
-
             return state;
     }
 }
