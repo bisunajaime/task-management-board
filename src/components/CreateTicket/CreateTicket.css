@@ -1,7 +1,6 @@
 .create-ticket {
     width: 800px;
     background-color: rgb(244, 244, 244);
-    padding: 24px;
 }
 
 .create-ticket__title {
@@ -25,4 +24,46 @@
 .dynamic-delete-button[disabled] {
     cursor: not-allowed;
     opacity: 0.5;
+}
+
+.create-ticket__form {
+    padding: 24px;
+}
+
+.create-ticket__image-picker {
+    height: 300px;
+    width: 100%;
+    background-color: rgb(83, 102, 250);
+    position: relative;
+}
+
+.create-ticket__image {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.create-ticket__image {}
+
+.create-ticket__random-image-button {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+
+    background-color: transparent;
+    border: 3px solid white;
+    padding: 8px 18px;
+    color: white;
+    font-weight: bold;
+    transition: color, background-color 250ms ease;
+}
+
+.create-ticket__random-image-button:hover {
+    cursor: pointer;
+    background-color: black;
+}
+
+.create-ticket__image--placeholder {
+    background-color: rgb(86, 92, 255);
 }

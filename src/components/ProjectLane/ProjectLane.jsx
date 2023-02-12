@@ -1,19 +1,29 @@
-import { useState } from 'react';
 import { Actions } from '../../state/actions';
 import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectLane.css';
 
 export const ProjectLane = ({ id, label, items }) => {
-    const [{ tickets }] = useStateValue();
+    const [{ tickets, searchResults }] = useStateValue();
+    const hasSearchResults = searchResults != null;
 
     return <div className="project-lane">
         <ProjectLaneHeading label={label} itemCount={items.length} />
         <AddTicketButton lane={id} />
-        {items.map(i => <ProjectLaneItem
-            key={i}
-            item={tickets[i]}
-            lane={label}
-        />)}
+        {items.map(i => {
+            if (hasSearchResults) {
+                const resultInLane = searchResults[i] != undefined;
+                return resultInLane ? <ProjectLaneItem
+                    key={i}
+                    item={searchResults[i]}
+                    lane={id}
+                /> : <></>
+            }
+            return <ProjectLaneItem
+                key={i}
+                item={tickets[i]}
+                lane={id}
+            />
+        })}
     </div>
 }
 
@@ -25,8 +35,9 @@ const ProjectLaneHeading = ({ label, itemCount }) => {
 }
 
 const ProjectLaneItem = ({ item, lane }) => {
-    const { id, tags, title, priority, members, photo } = item;
-    const [{ selectedTicket }, dispatcher] = useStateValue();
+    const { id, tags, title, description, priority, members, photo } = item;
+    const [{ selectedTicket, saveTicket }, dispatcher] = useStateValue();
+    const isSelected = id == selectedTicket?.id || saveTicket?.ticket?.id == id;
 
     const selectTicket = () => {
         const sameTicket = selectedTicket?.id == id;
@@ -39,7 +50,7 @@ const ProjectLaneItem = ({ item, lane }) => {
         })
     }
 
-    return <div className="project-lane-item" onClick={() => selectTicket()} >
+    return <div className={`project-lane-item ${isSelected ? 'project-lane-item--selected' : ''}`} onClick={() => selectTicket()} >
         <div className="project-lane-item__row">
             <div className="project-lane-item__tags">
                 {tags.map(t => <span key={t} className='project-lane-item__tag'>{t}</span>)}
@@ -47,6 +58,7 @@ const ProjectLaneItem = ({ item, lane }) => {
             <span className="project-lane-item__priority" style={{ color: colorFromPriority(priority) }}>{priority}</span>
         </div>
         <h1 className="project-lane-item__title">{title}</h1>
+        <p className="project-lane-item__description">{description}</p>
         <div className="project-lane-item__members">
             {members.map(m => <div key={m} className="project-lane-item__member" />)}
         </div>
@@ -61,8 +73,10 @@ const AddTicketButton = ({ lane }) => {
             type: Actions.UNSELECT_TICKET,
         })
         dispatcher({
-            type: Actions.SHOW_ADD_TICKET,
-            payload: lane
+            type: Actions.SHOW_SAVE_TICKET,
+            payload: {
+                laneId: lane,
+            }
         })
     }
 

@@ -1,5 +1,5 @@
 .ticket-details {
-    width: 800px;
+    width: 900px;
     background-color: rgb(255, 255, 255);
 }
 
@@ -19,7 +19,6 @@
     font-weight: bold;
     padding: 8px 24px;
     border-radius: 6px;
-    margin-bottom: 8px;
 }
 
 .ticket-details__code {
@@ -79,4 +78,30 @@
     background-color: rgb(198, 198, 198);
     margin-right: 8px;
     margin-bottom: 8px;
+}
+
+.ticket-details__heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 8px;
+    justify-content: space-between;
+}
+
+.ticket-details__heading-button-group {
+    display: flex;
+}
+
+.ticket-details__button-close {
+    background-color: #FF3232 !important;
+    font-weight: bold;
+}
+
+.ticket-details__button-edit,
+.ticket-details__button-close {
+    padding: 12px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    margin-left: 4px;
 }
