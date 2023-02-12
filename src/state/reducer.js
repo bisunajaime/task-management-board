@@ -24,6 +24,7 @@ const createInitialState = () => {
             laneId: null,
             ticket: null,
         },
+        searchResults: null,
     };
 
 
@@ -231,8 +232,33 @@ export default (state, action) => {
                     ticketId: ticket,
                 }
             };
+        case Actions.SEARCH_TICKETS:
+            const { text } = payload;
+            const results = {};
+            if (text.length == 0) {
+                return { ...state, searchResults: null }
+            }
+            for (const key in state.tickets) {
+                const ticket = state.tickets[key];
+                const containsName = ticket.title.toLowerCase().includes(text.toLowerCase());
+                const containsDescription = ticket.description.toLowerCase().includes(text.toLowerCase());
+                if (containsName || containsDescription) {
+                    results[key] = state.tickets[key]
+                }
+            }
+            // console.log(`Found: ${Object.keys(results).length} results`);
+            return { ...state, searchResults: results };
         case Actions.HIDE_EDIT_TICKET:
         case Actions.EDIT_TICKET:
             return state;
+    }
+}
+
+const searchObjs = {
+    "id-1": {
+        "name": "John"
+    },
+    "id-2": {
+        "name": "Doe"
     }
 }

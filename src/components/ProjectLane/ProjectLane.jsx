@@ -4,16 +4,39 @@ import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectLane.css';
 
 export const ProjectLane = ({ id, label, items }) => {
-    const [{ tickets }] = useStateValue();
+    const [{ tickets, searchResults }] = useStateValue();
+    const hasSearchResults = searchResults != null;
 
     return <div className="project-lane">
         <ProjectLaneHeading label={label} itemCount={items.length} />
         <AddTicketButton lane={id} />
-        {items.map(i => <ProjectLaneItem
-            key={i}
-            item={tickets[i]}
-            lane={id}
-        />)}
+        {items.map(i => {
+            if (hasSearchResults) {
+                const resultInLane = searchResults[i] != undefined;
+                return resultInLane ? <ProjectLaneItem
+                    key={i}
+                    item={searchResults[i]}
+                    lane={id}
+                /> : <></>
+            }
+            return <ProjectLaneItem
+                key={i}
+                item={tickets[i]}
+                lane={id}
+            />
+        })}
+        {/* {hasSearchResults ?
+            items.map(i => searchResults[i] == undefined ? <></> : <ProjectLaneItem
+                key={i}
+                item={searchResults[i]}
+                lane={id}
+            />)
+            : items.map(i => <ProjectLaneItem
+                key={i}
+                item={tickets[i]}
+                lane={id}
+            />)
+        } */}
     </div>
 }
 
