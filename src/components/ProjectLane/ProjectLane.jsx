@@ -25,7 +25,7 @@ const ProjectLaneHeading = ({ label, itemCount }) => {
 }
 
 const ProjectLaneItem = ({ item, lane }) => {
-    const { id, tags, title, priority, members, photo } = item;
+    const { id, tags, title, description, priority, members, photo } = item;
     const [{ selectedTicket, saveTicket }, dispatcher] = useStateValue();
     const isSelected = id == selectedTicket?.id || saveTicket?.ticket?.id == id;
 
@@ -48,6 +48,7 @@ const ProjectLaneItem = ({ item, lane }) => {
             <span className="project-lane-item__priority" style={{ color: colorFromPriority(priority) }}>{priority}</span>
         </div>
         <h1 className="project-lane-item__title">{title}</h1>
+        <p className="project-lane-item__description">{description}</p>
         <div className="project-lane-item__members">
             {members.map(m => <div key={m} className="project-lane-item__member" />)}
         </div>
