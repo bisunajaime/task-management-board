@@ -2,10 +2,11 @@ import { Form, Select } from 'antd';
 import { Actions } from '../../state/actions';
 import { useStateValue } from '../../state/AppDataProvider';
 import { colorFromPriority } from '../ProjectLane/ProjectLane';
+import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import './TicketDetails.css';
 
 export const TicketDetails = ({ details }) => {
-    const [{ projectLanes }] = useStateValue();
+    const [{ projectLanes }, dispatcher] = useStateValue();
     const { id, lane, tags, title, priority, description, members, photo } = details;
 
     const getLaneTitle = () => {
@@ -14,29 +15,43 @@ export const TicketDetails = ({ details }) => {
         return laneDetails.title
     }
 
+    const showEditTicket = () => {
+        dispatcher({
+            type: Actions.SHOW_SAVE_TICKET,
+            payload: {
+                ticket: details,
+                laneId: lane,
+            }
+        })
+    }
+
+    const closeTicket = () => {
+        dispatcher({
+            type: Actions.UNSELECT_TICKET
+        })
+    }
+
     return <section className="ticket-details">
-        <img className='ticket-details__cover-image' src={'https://images.unsplash.com/photo-1475669698648-2f144fcaaeb1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'} alt="ticket image" />
+        <img className='ticket-details__cover-image' src={photo} alt="ticket image" />
         <div className="ticket-details__content">
-            <div className="ticket-details__priority" style={{
-                backgroundColor: colorFromPriority(priority)
-            }}>{priority} - {getLaneTitle()}</div>
+            <div className="ticket-details__heading">
+                <div className="ticket-details__priority" style={{
+                    backgroundColor: colorFromPriority(priority)
+                }}>{priority} - {getLaneTitle()}</div>
+                <div className="ticket-details__heading-button-group">
+                    <EditOutlined onClick={showEditTicket} className='ticket-details__button-edit' />
+                    <CloseOutlined onClick={closeTicket} className='ticket-details__button-edit' />
+                </div>
+            </div>
             <div className="ticket-details__code">{id}</div>
             <div className="ticket-details__title">{title}</div>
             <div className="ticket-details__tags">
                 {tags?.map(t => <div key={t} className="ticket-details__tags-tag">{t}</div>)}
-                <div className="ticket-details__tags-tag--add">Add a tag</div>
             </div>
             <div className="ticket-details__description">
                 {description}
             </div>
             <MoveTicketLane key={id} details={details} />
-            <div className="ticket-details__attachment-title">
-                Attachments
-            </div>
-            <div className="ticket-details__attachments">
-                <div className="attachment"></div>
-                <div className="attachment"></div>
-            </div>
             <div className="ticket-details__comments"></div>
         </div>
     </section >

@@ -26,7 +26,8 @@ const ProjectLaneHeading = ({ label, itemCount }) => {
 
 const ProjectLaneItem = ({ item, lane }) => {
     const { id, tags, title, priority, members, photo } = item;
-    const [{ selectedTicket }, dispatcher] = useStateValue();
+    const [{ selectedTicket, saveTicket }, dispatcher] = useStateValue();
+    const isSelected = id == selectedTicket?.id || saveTicket?.ticket?.id == id;
 
     const selectTicket = () => {
         const sameTicket = selectedTicket?.id == id;
@@ -39,7 +40,7 @@ const ProjectLaneItem = ({ item, lane }) => {
         })
     }
 
-    return <div className="project-lane-item" onClick={() => selectTicket()} >
+    return <div className={`project-lane-item ${isSelected ? 'project-lane-item--selected' : ''}`} onClick={() => selectTicket()} >
         <div className="project-lane-item__row">
             <div className="project-lane-item__tags">
                 {tags.map(t => <span key={t} className='project-lane-item__tag'>{t}</span>)}
@@ -61,8 +62,10 @@ const AddTicketButton = ({ lane }) => {
             type: Actions.UNSELECT_TICKET,
         })
         dispatcher({
-            type: Actions.SHOW_ADD_TICKET,
-            payload: lane
+            type: Actions.SHOW_SAVE_TICKET,
+            payload: {
+                laneId: lane,
+            }
         })
     }
 

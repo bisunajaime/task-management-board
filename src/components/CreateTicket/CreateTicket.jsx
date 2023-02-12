@@ -1,33 +1,53 @@
 import './CreateTicket.css';
 import { Button, DatePicker, Form, Input, Radio, Space } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TextArea from 'antd/es/input/TextArea';
 import { useStateValue } from '../../state/AppDataProvider';
 import { Actions } from '../../state/actions';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { getRandomImage } from '../../services/UnsplashApiService';
 
-export const CreateTicket = ({
-    laneId,
-}) => {
-    const [{ addTicket, projectLanes }, dispatcher] = useStateValue();
+export const CreateTicket = () => {
+    const [photo, setPhoto] = useState(null);
+    const [{ saveTicket, projectLanes }, dispatcher] = useStateValue();
+    const { laneId, ticket } = saveTicket;
 
     const getLaneName = () => {
-        const { laneId } = addTicket;
         const lane = projectLanes.find(l => l.id == laneId);
         if (lane == undefined) return;
         const { title } = lane;
         return title;
     }
+
+    const loadRandomImage = async () => {
+        getRandomImage().then(img => {
+            setPhoto(img);
+        });
+    }
+
+    useEffect(() => {
+        if (ticket != null) {
+            setPhoto(saveTicket.ticket.photo)
+            return;
+        }
+        loadRandomImage();
+    }, [])
+
     return <section className="create-ticket">
-        <h1 className='create-ticket__title'>Create Ticket - {getLaneName()}</h1>
-        <CreateTicketForm laneId={laneId} />
+        <div className="create-ticket__image-picker">
+            <img src={photo} alt="" className={`create-ticket__image ${photo == null ? 'create-ticket__image--placeholder' : ''}`} />
+            <button onClick={loadRandomImage} className='create-ticket__random-image-button' >Random Image</button>
+        </div>
+        <div className="create-ticket__form">
+            <h1 className='create-ticket__title'>Create Ticket - {getLaneName()}</h1>
+            <CreateTicketForm laneId={laneId} image={photo} />
+        </div>
     </section>
 }
 
-const CreateTicketForm = ({ laneId }) => {
+const CreateTicketForm = ({ laneId, image }) => {
     const randomBetween = (min, max) => (max - min) * Math.random() + min;
-
     const randomList = () => {
         const length = parseInt(randomBetween(1, 5))
         let list = [];
@@ -38,7 +58,8 @@ const CreateTicketForm = ({ laneId }) => {
     };
 
     const [form] = Form.useForm();
-    const [{ }, dispatcher] = useStateValue();
+    const [{ saveTicket }, dispatcher] = useStateValue();
+    const { ticket } = saveTicket;
     const [state, setState] = useState({
         id: uuidv4(),
         tags: [
@@ -49,9 +70,22 @@ const CreateTicketForm = ({ laneId }) => {
         description: null,
         priority: 'Low',
         members: randomList(),
-        photo: null,
+        photo: image,
         date: null,
     });
+
+    useEffect(() => {
+        if (ticket != null) {
+            const test = { ...state, ...ticket };
+            setState({ ...state, ...ticket, photo: image })
+            form.resetFields();
+            return;
+        }
+        setState({ ...state, photo: image })
+    }, [image])
+
+
+
     const onValuesChanged = (result) => {
         setState({
             ...state,
@@ -69,13 +103,13 @@ const CreateTicketForm = ({ laneId }) => {
             },
         })
         dispatcher({
-            type: Actions.HIDE_ADD_TICKET,
+            type: Actions.HIDE_SAVE_TICKET,
         })
     }
 
     const onCancel = () => {
         dispatcher({
-            type: Actions.HIDE_ADD_TICKET,
+            type: Actions.HIDE_SAVE_TICKET,
         })
     }
 
@@ -89,12 +123,12 @@ const CreateTicketForm = ({ laneId }) => {
             onFinishFailed={(err) => alert(`There was a problem ${err}`)}
         >
             <Form.Item label="Title" required name="title" >
-                <Input size='large' placeholder="input placeholder" />
+                <Input size='large' />
             </Form.Item>
             <Form.Item label="Description" required name="description">
                 <TextArea rows={4} draggable={false} />
             </Form.Item>
-            <Form.Item label="Priority" name="priority" initialValue={state.priority}>
+            <Form.Item label="Priority" name="priority">
                 <Radio.Group>
                     <Radio.Button value="Low">Low</Radio.Button>
                     <Radio.Button value="Medium" >Medium</Radio.Button>

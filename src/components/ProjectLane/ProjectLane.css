@@ -24,6 +24,10 @@
     font-weight: bold;
 }
 
+.project-lane-item--selected {
+    border: 2px solid #ff8331 !important;
+}
+
 .project-lane-item {
     background-color: white;
     padding: 8px;

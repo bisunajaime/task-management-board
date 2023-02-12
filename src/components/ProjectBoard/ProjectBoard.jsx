@@ -7,9 +7,12 @@ export const ProjectBoard = () => {
     const [{ projectLanes }, dispatcher] = useStateValue();
     const totalLanes = projectLanes.length + 1;
 
-    return <section className="project-board" style={{
-        gridTemplateColumns: `repeat(${totalLanes}, 300px)`
-    }}>
+    return <section
+        className="project-board"
+        style={{
+            gridTemplateColumns: `repeat(${totalLanes}, 300px)`
+        }}
+    >
         {projectLanes.map(lane => <ProjectLane
             key={lane.id}
             id={lane.id}
@@ -33,7 +36,7 @@ const AddProjectLaneHeading = ({ label }) => {
 
     const onAddClick = () => {
         const title = prompt('Enter a lane name:')
-        if (title == null) return;
+        if (title == null || title == '') return;
         dispatcher({
             type: Actions.ADD_LANE,
             payload: title,
