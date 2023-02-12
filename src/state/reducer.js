@@ -28,13 +28,33 @@ const createInitialState = () => {
     };
 
 
+    const members = [
+        {
+            name: 'Monica',
+            photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1661&q=80',
+        },
+        {
+            name: 'Brad',
+            photo: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
+        },
+        {
+            name: 'Owen',
+            photo: 'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80',
+        },
+        {
+            name: 'Jason',
+            photo: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080&q=80',
+        },
+    ];
+
+    members.sort(() => Math.random() - 0.5);
     var ticket1 = {
         id: uuidv4(),
         tags: ['Buttons', 'Alignment', 'Bug'],
         title: 'Misaligned buttons',
         description: 'Some buttons are appearing off-center on certain pages, causing confusion for users who are trying to interact with them.',
         priority: 'High',
-        members: [1, 2, 3],
+        members: members,
         photo: "https://images.unsplash.com/photo-1513151233558-d860c5398176?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxMTQ1MjQ&ixlib=rb-4.0.3&q=80&w=400"
     };
     state.projectLanes.push({
@@ -44,22 +64,25 @@ const createInitialState = () => {
             ticket1.id,
         ],
     })
+
+    members.sort(() => Math.random() - 0.5);
     const ticket2 = {
         id: uuidv4(),
         tags: ['Text', 'Font'],
         title: 'Inconsistent font styles',
         description: 'Different pages are using different font styles, making the overall design look inconsistent and unprofessional.',
         priority: 'Low',
-        members: [1, 2, 3],
+        members: members,
         photo: "https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxMTQ1Mzg&ixlib=rb-4.0.3&q=80&w=400"
     }
+    members.sort(() => Math.random() - 0.5);
     const todoTicket3 = {
         id: uuidv4(),
         tags: ['Design', 'Color', 'Contrast'],
         title: 'Poor color contrast',
         description: 'The color contrast between the text and the background is not high enough, making it difficult for users to read the content',
         priority: 'High',
-        members: [1, 2, 3],
+        members: members,
         photo: "https://images.unsplash.com/photo-1502691876148-a84978e59af8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxNzUyMDY&ixlib=rb-4.0.3&q=80&w=400"
     }
     state.projectLanes.push({
@@ -72,13 +95,14 @@ const createInitialState = () => {
     })
 
 
+    members.sort(() => Math.random() - 0.5);
     const ticket3 = {
         id: uuidv4(),
         tags: ['Bug'],
         title: 'Broken links',
         description: 'There are some links within the design that are not working, leading users to dead-end pages and creating frustration.',
         priority: 'Medium',
-        members: [1, 2, 3],
+        members: members,
         photo: "https://images.unsplash.com/photo-1557180295-76eee20ae8aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxMTQ1NDc&ixlib=rb-4.0.3&q=80&w=400"
     }
     state.projectLanes.push({

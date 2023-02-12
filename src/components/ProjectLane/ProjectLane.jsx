@@ -1,3 +1,4 @@
+import { Tooltip } from 'antd';
 import { Actions } from '../../state/actions';
 import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectLane.css';
@@ -60,7 +61,11 @@ const ProjectLaneItem = ({ item, lane }) => {
         <h1 className="project-lane-item__title">{title}</h1>
         <p className="project-lane-item__description">{description}</p>
         <div className="project-lane-item__members">
-            {members.map(m => <div key={m} className="project-lane-item__member" />)}
+            {members.map(m => <div key={m} className="project-lane-item__member">
+                <Tooltip title={m.name}>
+                    <img src={m.photo} className='project-lane-item__member-photo' />
+                </Tooltip>
+            </div>)}
         </div>
     </div>
 }

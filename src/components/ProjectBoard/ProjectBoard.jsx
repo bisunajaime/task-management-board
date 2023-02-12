@@ -10,7 +10,7 @@ export const ProjectBoard = () => {
     return <section
         className="project-board"
         style={{
-            gridTemplateColumns: `repeat(${totalLanes}, 300px)`
+            gridTemplateColumns: `repeat(${totalLanes}, 350px)`
         }}
     >
         {projectLanes.map(lane => <ProjectLane
