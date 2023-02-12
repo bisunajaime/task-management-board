@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Actions } from '../../state/actions';
 import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectLane.css';

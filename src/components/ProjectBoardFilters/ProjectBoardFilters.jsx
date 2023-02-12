@@ -1,7 +1,5 @@
-import { SearchOutlined, UserOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 import { Form, Input, Select } from 'antd';
-import Search from 'antd/es/input/Search';
-import { useState } from 'react';
 import { Actions } from '../../state/actions';
 import { useStateValue } from '../../state/AppDataProvider';
 import './ProjectBoardFilters.css';
