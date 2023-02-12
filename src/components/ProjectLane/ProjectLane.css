@@ -88,16 +88,16 @@
 
 .project-lane-item__members {
     display: flex;
-
 }
 
 .project-lane-item__member {
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     margin-right: -8px;
     background-color: white;
     border-radius: 50%;
     border: 1px solid gray;
+    object-fit: cover;
     /* box-shadow: 0px 0px 10px 2px rgb(209, 209, 209); */
 }
 
@@ -118,4 +118,14 @@
 .project-lane-heading--add:hover {
     background-color: black;
     color: white;
+}
+
+.project-lane-item__member-photo {
+    height: 35px;
+    width: 35px;
+    margin-right: -8px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid gray;
+    object-fit: cover;
 }
