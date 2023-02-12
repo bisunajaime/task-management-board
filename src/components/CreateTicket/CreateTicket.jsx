@@ -51,12 +51,20 @@ export const CreateTicket = () => {
 const CreateTicketForm = ({ laneId, image }) => {
     const randomBetween = (min, max) => (max - min) * Math.random() + min;
     const randomList = () => {
-        const length = parseInt(randomBetween(1, 5))
-        let list = [];
-        for (let i = 0; i < length; i++) {
-            list.push(Math.random());
-        }
-        return list;
+
+        return [
+            {
+                name: 'Brad',
+                photo: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
+            },
+            {
+                name: 'Owen',
+                photo: 'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80',
+            },
+            {
+                name: 'Jason',
+                photo: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080&q=80',
+            },];
     };
 
     const [form] = Form.useForm();
