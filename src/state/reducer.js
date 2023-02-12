@@ -26,46 +26,56 @@ const createInitialState = () => {
         },
     };
 
-    state.projectLanes.push({
-        id: uuidv4(),
-        title: 'Backlog',
-        ticketIds: [
-        ],
-    })
 
     var ticket1 = {
         id: uuidv4(),
-        tags: ['Design', 'Bug'],
-        title: '1 Wrong text color',
-        description: 'Hello World!',
+        tags: ['Buttons', 'Alignment', 'Bug'],
+        title: 'Misaligned buttons',
+        description: 'Some buttons are appearing off-center on certain pages, causing confusion for users who are trying to interact with them.',
         priority: 'High',
         members: [1, 2, 3],
         photo: "https://images.unsplash.com/photo-1513151233558-d860c5398176?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxMTQ1MjQ&ixlib=rb-4.0.3&q=80&w=400"
     };
+    state.projectLanes.push({
+        id: uuidv4(),
+        title: 'Backlog',
+        ticketIds: [
+            ticket1.id,
+        ],
+    })
     const ticket2 = {
         id: uuidv4(),
-        tags: ['Design'],
-        title: '2 Wrong text color',
-        description: 'Hello World!',
+        tags: ['Text', 'Font'],
+        title: 'Inconsistent font styles',
+        description: 'Different pages are using different font styles, making the overall design look inconsistent and unprofessional.',
         priority: 'Low',
         members: [1, 2, 3],
         photo: "https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxMTQ1Mzg&ixlib=rb-4.0.3&q=80&w=400"
+    }
+    const todoTicket3 = {
+        id: uuidv4(),
+        tags: ['Design', 'Color', 'Contrast'],
+        title: 'Poor color contrast',
+        description: 'The color contrast between the text and the background is not high enough, making it difficult for users to read the content',
+        priority: 'High',
+        members: [1, 2, 3],
+        photo: "https://images.unsplash.com/photo-1502691876148-a84978e59af8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxNzUyMDY&ixlib=rb-4.0.3&q=80&w=400"
     }
     state.projectLanes.push({
         id: uuidv4(),
         title: 'To Do',
         ticketIds: [
-            ticket1.id,
             ticket2.id,
+            todoTicket3.id,
         ],
     })
 
 
     const ticket3 = {
         id: uuidv4(),
-        tags: ['Bugs Bunny'],
-        title: '3 Wrong text color',
-        description: 'Hello World!',
+        tags: ['Bug'],
+        title: 'Broken links',
+        description: 'There are some links within the design that are not working, leading users to dead-end pages and creating frustration.',
         priority: 'Medium',
         members: [1, 2, 3],
         photo: "https://images.unsplash.com/photo-1557180295-76eee20ae8aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MDkyNzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzYxMTQ1NDc&ixlib=rb-4.0.3&q=80&w=400"
@@ -93,6 +103,7 @@ const createInitialState = () => {
     state.tickets[ticket1.id] = ticket1;
     state.tickets[ticket2.id] = ticket2;
     state.tickets[ticket3.id] = ticket3;
+    state.tickets[todoTicket3.id] = todoTicket3;
 
     return state;
 }

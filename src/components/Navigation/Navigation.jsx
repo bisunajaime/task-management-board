@@ -1,3 +1,4 @@
+import { BellOutlined, HomeOutlined, OrderedListOutlined, TeamOutlined } from '@ant-design/icons'
 import { CurrentUser } from '../CurrentUser/CurrentUser'
 import { NavigationItem } from '../NavigationItem/NavigationItem'
 import './Navigation.css'
@@ -17,11 +18,11 @@ const Divider = () => {
 
 const NavigationItems = () => {
     return <div className="navigation__items">
-        <NavigationItem label={'Dashboard'} />
-        <NavigationItem label={'My Tasks'} />
-        <NavigationItem label={'Document'} />
-        <NavigationItem label={'Progress'} />
-        <NavigationItem label={'Notification'} />
-        <NavigationItem label={'Members'} />
+        <NavigationItem icon={<HomeOutlined />} label={'Dashboard'} />
+        {/* <NavigationItem icon={<OrderedListOutlined />} label={'My Tasks'} /> */}
+        {/* <NavigationItem  label={'Document'} />
+        <NavigationItem label={'Progress'} /> */}
+        {/* <NavigationItem icon={<BellOutlined />} label={'Notification'} />
+        <NavigationItem icon={<TeamOutlined />} label={'Members'} /> */}
     </div>
 }

@@ -5,10 +5,10 @@ export const CurrentUser = () => {
         <div className="currentuser__photo"></div>
         <div className="currentuser__credentials">
             <div className="currentuser__name">
-                Darrel Steward
+                John M. Doe
             </div>
             <div className="currentuser__role">
-                UI Designer
+                Developer
             </div>
         </div>
     </div>

@@ -25,7 +25,7 @@
 }
 
 .project-lane-item--selected {
-    border: 2px solid #ff8331 !important;
+    border: 2px solid rgb(72, 130, 255) !important;
 }
 
 .project-lane-item {
@@ -40,7 +40,7 @@
 
 .project-lane-item:hover {
     cursor: pointer;
-    border: 2px solid #ff8331;
+    border: 2px solid rgb(72, 130, 255);
     /* box-shadow: -9px 10px 12px -3px rgba(214, 214, 214, 0.75);
     -webkit-box-shadow: -9px 10px 12px -3px rgba(214, 214, 214, 0.75);
     -moz-box-shadow: -9px 10px 12px -3px rgba(214, 214, 214, 0.75); */
